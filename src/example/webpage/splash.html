@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bunny Animation</title>
+    <style>
+      #bunny {
+        position: absolute;
+        left: 0;
+        top: 0;
+        animation-name: rotate, scale;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes scale {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img id="bunny" src="bunny.png" alt="Bunny" />
+
+    <script>
+      let bunny = document.getElementById("bunny");
+      let x = 0;
+      let y = 0;
+
+      function moveBunny() {
+        x += 10; // move bunny 10 pixels to the right
+        y += 5; // move bunny 5 pixels down
+
+        bunny.style.left = x + "px";
+        bunny.style.top = y + "px";
+
+        if (x > window.innerWidth) {
+          // if bunny goes off screen
+          x = 0; // start again at left side of screen
+        }
+
+        requestAnimationFrame(moveBunny); // call function again for next frame
+      }
+
+      moveBunny(); // start the animation
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+DATE: 1679603730548
+ACTION: CODE
+QUESTION: Write a node script called update that takes a path to a file and reads it then write to a file words UPDATE:  the contents of the file  to a file with the same name and extension but also has a .ask extension. For example hello.html would get a hello.html.ask file.
+
+
+DATE: 1679604250618
+ACTION: CODE
+QUESTION: Write a node script called update that takes a path to a file and reads it then write to a file words UPDATE:  the contents of the file  to a file with the same name and extension but also has a .ask extension. For example hello.html would get a hello.html.ask file.
+
+

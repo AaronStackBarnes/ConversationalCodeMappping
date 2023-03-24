@@ -1,0 +1,32 @@
+To make the bunny spin around as it bounces and change size in the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html, you would need to use CSS animations. You can define a keyframe animation that rotates the bunny element and another one that changes its size. Then, you can apply those animations to the bunny element using the animation property in CSS. Here's an example:
+
+```css
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bunny {
+  animation-name: rotate, scale;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+```
+
+In this example, the `rotate` keyframe animation rotates the bunny element 360 degrees, while the `scale` keyframe animation scales it up to 1.5 times its original size and back down. The `.bunny` selector applies both animations to the bunny element and sets their duration and iteration count.

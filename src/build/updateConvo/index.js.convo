@@ -1,0 +1,6 @@
+CODE write a node script that recursively checks for every for every .ask file in the src directory. When it finds one open it up and check the first word. That word should either be CODE, DEBUG, or UPDATE that is called the action. The rest of the file is called the question. In the same directory as the ask file check to see if there is a file with the same name as the ask file but with a .convo file extension. If the file is not there create it. Add to the top of the file `DATE: ${+new Date()}\nACTION: ${action}\nQUESTION: ${question}\n\n\n`
+DATE: 1679604250618
+ACTION: 
+QUESTION: 
+
+

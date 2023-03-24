@@ -1,0 +1,109 @@
+UPDATE: import * as dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
+import chokidar from "chokidar";
+import { ChatGPTAPI } from "chatgpt";
+import { fileURLToPath } from "url";
+
+dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const srcDirectory = path.join(__dirname, "..", "src");
+const configFileName = ".ccmConfig.json";
+const projectName = srcDirectory.split("/")[srcDirectory.split("/").length - 1];
+
+const startPrompt = `We are going to be writing code together the project is called ${projectName}. If I say CODE followed by a filename followed by a description of what code I want to go in the file or some changes I want you to make to the code, I want you to respond with the code that goes in the file nothing else. If I say UPDATE followed by a filename, followed by code that means I have made changes to the file that I want you to know about please repeat the code back to me to confirm you have it. If say DEBUG followed by a filename followed by code or an error message I want you to tell me what you think is wrong with code in the file. Can you respond with a summary of the things I want you to do so I know you understand?`;
+
+(async () => {
+  return projectName;
+  const chatGptApi = new ChatGPTAPI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  let parentMessageId = getParentMessageId();
+
+  let options = {};
+  if (parentMessageId) {
+    options.parentMessageId = parentMessageId;
+  }
+
+  console.log(startPrompt);
+  const res = await chatGptApi.sendMessage(startPrompt, options);
+  console.log(res.text);
+
+  if (parentMessageId) {
+    options.parentMessageId = res.id;
+  }
+
+  const watcher = chokidar.watch(srcDirectory, {
+    ignored: /(^|[\/\\])\../,
+    persistent: true,
+  });
+
+  watcher.on("change", async (filePath) => {
+    await handleFileChange(filePath);
+  });
+
+  async function handleFileChange(filePath) {
+    if (path.extname(filePath) === ".ask") {
+      const questionData = fs.readFileSync(filePath, "utf8").split(" ");
+      const action = questionData.shift();
+      const question = `${action} ${filePath} ${questionData.join(" ")}`;
+      const convoFilePath = "." + filePath.replace(".ask", ".convo");
+      const mainFilePath = filePath.replace(".ask", "");
+
+      try {
+        console.log(question);
+        const res = await chatGptApi.sendMessage(question, options);
+
+        const answer = res.text.trim();
+        console.log(answer);
+
+        if (action === "DEBUG") {
+          console.log(answer);
+        } else {
+          const mainFile = answer?.split("```")?.[1];
+          fs.writeFileSync(mainFilePath, mainFile);
+        }
+
+        const convoContent = `DATE: ${+new Date()}\nACTION: ${action}\nQUESTION: ${question}\n\n\n`;
+        fs.appendFileSync(convoFilePath, convoContent, "utf8");
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  }
+})();
+
+async function getParentMessageId() {
+  try {
+    const configFilePath = path.join(process.cwd(), configFileName);
+
+    if (fs.existsSync(configFilePath)) {
+      const configFileContent = await fs.promises.readFile(
+        configFilePath,
+        "utf-8"
+      );
+      const config = JSON.parse(configFileContent);
+      return config.parentMessageId;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error("Error reading the config file:", error);
+    return false;
+  }
+}
+
+async function setParentMessageId(parentMessageId) {
+  try {
+    const configFilePath = path.join(process.cwd(), configFileName);
+    const config = {
+      parentMessageId: parentMessageId,
+    };
+    const configFileContent = JSON.stringify(config, null, 2);
+    await fs.promises.writeFile(configFilePath, configFileContent, "utf-8");
+    console.log("Parent message ID saved successfully.");
+  } catch (error) {
+    console.error("Error writing to the config file:", error);
+  }
+}

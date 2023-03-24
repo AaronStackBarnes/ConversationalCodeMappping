@@ -1,0 +1,20 @@
+{
+  "name": "ccm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server/index.js",
+    "updateConvos": "node src/build/updateConvos/index.js",
+    "updateAsk": "node src/build/updateAsk/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "chatgpt": "^5.1.2",
+    "chokidar": "^3.5.3",
+    "dotenv": "^16.0.3"
+  }
+}

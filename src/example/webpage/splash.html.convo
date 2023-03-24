@@ -1,0 +1,202 @@
+DATE: 1679619944234
+ QUESTION: I am working on a file called /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html. a single page html file that has an ascii art bunny.
+. Please respond with exactly what goes in the file
+ANSWER: UPDATED_CODE 
+
+
+DATE: 1679620160471
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html update the file so the bunny is ranbow colored 
+. Please respond with exactly what I should put in the file.
+ANSWER: UPDATED_CODE 
+
+
+DATE: 1679620160579
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html update the file so the bunny is ranbow colored 
+. Please respond with exactly what I should put in the file.
+ANSWER: UPDATED_CODE 
+
+
+DATE: 1679620564335
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html update the file so it includes a javascript script that bounces the bunny around the screen 
+. Please respond with exactly what I should put in the file. Respond with the code for the entire file.
+ANSWER: UPDATED_CODE 
+
+
+DATE: 1679620858700
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html update the file so it includes a javascript script that bounces the bunny around the screen be sure to give the bunny the correct css styles so it can move 
+. Please respond with exactly what I should put in the file. Respond with the code for the entire file.
+ANSWER: UPDATED_CODE 
+
+
+DATE: 1679620932519
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html I have made changes to it please tell me what this file does. 
+
+ANSWER: As an AI language model, I cannot access or see the contents of the file you are working on, nor can I access your computer's file system. Therefore, I cannot tell you exactly what the file does without seeing its contents. However, in general, a file with the name "splash.html" might be a webpage that is meant to serve as a splash screen or introductory page for a website or application. Its purpose might be to attract the user's attention and give them a brief overview of what they can expect from the site or app. 
+
+
+DATE: 1679620993917
+ QUESTION: undefined
+ANSWER: UPDATED_CODE 
+
+
+DATE: 1679621337841
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html I have made changes to it please tell me what this file does. <!DOCTYPE html>
+<html>
+	<head>
+		<title>Splash Page</title>
+		<style>
+			.bunny {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<img class="bunny" src="bunny.png" />
+
+		<script>
+			var bunny = document.querySelector(".bunny");
+			var x = 0;
+			var y = 0;
+			var xSpeed = 5;
+			var ySpeed = 3;
+
+			function animate() {
+				x += xSpeed;
+				y += ySpeed;
+
+				if (x + bunny.clientWidth > window.innerWidth || x < 0) {
+					xSpeed = -xSpeed;
+				}
+
+				if (y + bunny.clientHeight > window.innerHeight || y < 0) {
+					ySpeed = -ySpeed;
+				}
+
+				bunny.style.transform = "translate(" + x + "px, " + y + "px)";
+				requestAnimationFrame(animate);
+			}
+
+			requestAnimationFrame(animate);
+		</script>
+	</body>
+</html>
+
+ANSWER: This file is a HTML document that displays an image of a bunny on a webpage. The bunny image is positioned absolutely in the top left corner of the page and has a width and height of 100 pixels. The JavaScript code animates the bunny to move across the screen by changing its position with each frame. It calculates new x and y coordinates for the bunny using the current xSpeed and ySpeed values, which determine the speed and direction of its movement. The animation also includes collision detection so that when the bunny reaches the edge of the window it bounces off in the opposite direction. The animation is achieved using the requestAnimationFrame() method which updates the position of the bunny on each frame of the browser's render cycle. 
+
+
+DATE: 1679674657118
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html I have a few questions about it. how would I make the bunny spin around as it bounces 
+
+ANSWER: To make the bunny spin around as it bounces, you would need to add CSS animation properties. You can create a CSS rule for the bunny image using the transform property with the rotate value and then use keyframes to animate it. Here's an example:
+
+```
+/* CSS */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.bunny {
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+```
+
+You can then add the "bunny" class to your HTML element that contains the bunny image to apply the animation. 
+
+
+DATE: 1679674662026
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html I have a few questions about it. how would I make the bunny spin around as it bounces 
+
+ANSWER: To make the bunny spin around as it bounces in /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html, you would need to add a CSS animation that rotates the image while it moves up and down. You can achieve this by using the `@keyframes` rule to define the animation steps and then applying it to the bunny image using the `animation` property. Here's an example of what the CSS code might look like:
+
+```css
+/* Define the animation */
+@keyframes spin-bounce {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-50px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Apply the animation to the bunny image */
+.bunny-image {
+  animation: spin-bounce 1s ease-in-out infinite;
+}
+```
+
+This code will rotate the bunny image by 360 degrees over the course of one second, while also bouncing it up and down by 50 pixels. The `infinite` value for the `animation-iteration-count` property ensures that the animation will repeat indefinitely. 
+
+
+DATE: 1679675012452
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html I have a few questions about it. how would I make the bunny spin around as it bounces and change size
+
+ANSWER: To make the bunny spin around as it bounces and change size, you would need to use CSS animations. You can define an animation that rotates the bunny and changes its size, and then apply that animation to the bunny image using CSS. Here is an example animation definition:
+
+```css
+@keyframes bounce {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(360deg) scale(1.5);
+  }
+  100% {
+    transform: rotate(720deg) scale(1);
+  }
+}
+```
+
+This animation will rotate the bunny 720 degrees and scale it up by 50% halfway through the animation. To apply this animation to the bunny image, you would add the following CSS rule:
+
+```css
+#bunny {
+  animation: bounce 2s ease-in-out infinite;
+}
+```
+
+This rule applies the `bounce` animation to the `#bunny` element, with a duration of 2 seconds and an easing function of `ease-in-out`. The `infinite` keyword makes the animation repeat indefinitely. 
+
+
+DATE: 1679675013615
+ QUESTION: I am working on the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html I have a few questions about it. how would I make the bunny spin around as it bounces and change size
+
+ANSWER: To make the bunny spin around as it bounces and change size in the file /Users/aaron.stack/websites/.CCM/src/example/webpage/splash.html, you would need to use CSS animations. You can define a keyframe animation that rotates the bunny element and another one that changes its size. Then, you can apply those animations to the bunny element using the animation property in CSS. Here's an example:
+
+```css
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bunny {
+  animation-name: rotate, scale;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+```
+
+In this example, the `rotate` keyframe animation rotates the bunny element 360 degrees, while the `scale` keyframe animation scales it up to 1.5 times its original size and back down. The `.bunny` selector applies both animations to the bunny element and sets their duration and iteration count. 
+
+
