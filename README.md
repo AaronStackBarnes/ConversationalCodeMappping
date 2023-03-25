@@ -4,6 +4,8 @@ This project enables collaborative code writing using ChatGPT by watching for ch
 
 I have done alot of expermenting with GPT 4 which is what this project needs to work well. A few changes need to be made. Each file should its own chat. You ask gpt to pretend to be the file and it can respond with its comments as actual code comments etc. This works so well it is scary. I cant wait until we can move this chat gpt 4...
 
+I got this close but completely missed the mark. massive update coming. cli -> coach on project file tree. describe structure. describe each file. select file back and forth writing file and generating description write a script that writes the file. left with file, description and script. cli switches between editing files and structure. you can edit the file and then it asks for description. or you can ask the ai to make changes and it appends the changes.
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
