@@ -2,6 +2,8 @@
 
 This project enables collaborative code writing using ChatGPT by watching for changes in `.ask` files and updating the corresponding files as needed.
 
+I have done alot of expermenting with GPT 4 which is what this project needs to work well. A few changes need to be made. Each file should its own chat. You ask gpt to pretend to be the file and it can respond with its comments as actual code comments etc. This works so well it is scary. I cant wait until we can move this chat gpt 4...
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
